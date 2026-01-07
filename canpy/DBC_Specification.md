@@ -1,10 +1,10 @@
 # Scope
-This document doesn't claim to specifiy the complete [Vector DBC standard](http://vector.com/vi_candb_en.html)
+This document doesn't claim to specify the complete [Vector DBC standard](http://vector.com/vi_candb_en.html)
 
 # Format description
-`<...>`: Required field
-`[...]`: Optional field
-`  |  `: Or (eg. <A|B>)
+* `<...>`: Required field
+* `[...]`: Optional field
+* `  |  `: Or (e.g. <A|B>)
 
 # Supported Keywords
 ## VERSION
@@ -12,23 +12,22 @@ Version identifier of the DBC file.
 Format: `VERSION "<VersionIdentifier>"`
 
 ## NS_
-Names used throughout the DBC file.
-Format::
-```
+Names used throughout the DBC file. Format:
+
+```dbc
 NS_:
     BS_
     CM_
     ...
 ```
 
-
 ## BS_
 Bus configuration.
-Format:: `BS_: <Speed>`
+Format: `BS_: <Speed>`
 Speed in kBit/s
 
 ## BU_
-List of all CAN-Nodes, seperated by whitespaces.
+List of all CAN-Nodes, separated by whitespaces.
 
 ## BO_
 Message definition.
@@ -52,12 +51,12 @@ Format: `CM_ [<BU_|BO_|SG_> [CAN-ID] [SignalName]] "<DescriptionText>";`
 Attribute definition.
 Format: `BA_DEF_ [BU_|BO_|SG_] "<AttributeName>" <DataType> [Config];`
 
-DataType | Description         | Config format
----------|---------------------|----------------
-INT      | integer             | `<min> <max>`
-FLOAT    | floating point      | `<min> <max>`
-STRING   | string              |
-ENUM     | enumeration         | `"<Value0>","<Value1>"...`
+| DataType | Description    | Config format              |
+|----------|----------------|----------------------------|
+| INT      | integer        | `<min> <max>`              |
+| FLOAT    | floating point | `<min> <max>`              |
+| STRING   | string         |                            |
+| ENUM     | enumeration    | `"<Value0>","<Value1>"...` |
 
 ## BA_DEF_DEF_
 Attribute default value
@@ -74,7 +73,7 @@ Format: `VAL_ <CAN-ID> <SignalsName> <ValTableName|ValTableDefinition>;`
 ## VAL_TABLE_
 Value table definition for signals.
 Format: `VAL_TABLE_ <ValueTableName> <ValueTableDefinition>;`
-ValueTableDefinition: List of `IntValue "StringValue"` Pairs, seperated by whitespaces
+ValueTableDefinition: List of `IntValue "StringValue"` Pairs, separated by whitespaces
 
 ## BO_TX_BU_:
 Transmitter for signals.
@@ -85,7 +84,7 @@ Group signals assigned to one can-id. I guess it makes it easier to parse and as
 Format: `SIG_GROUP_ <CAN-ID> <IntValue> : [Signal];`
 
 # Attributes
-In this sections are standard attributes used by [CANpy](https://github.com/stefanhoelzl/CANpy) defined. The attributes can be overwritten within a DBC file.
+In these sections are standard attributes used by [CANpy](https://github.com/stefanhoelzl/CANpy) defined. The attributes can be overwritten within a DBC file.
 ## Message Attributes
 
 ### GenMsgSendType
@@ -108,7 +107,7 @@ Default: 0
 Definition: `BA_DEF_DEF "GenMsgCycleTime" 0`
 
 ### GenMsgStartDelayTime
-Defines the allowed delay after startup this message must occure the first time in ms.
+Defines the allowed delay after startup this message must occur the first time in ms.
 Definition: `BA_DEF BO_ "GenMsgStartDelayTime" INT 0 0`
 Default: 0 (=GenMsgCycleTime)
 Definition: `BA_DEF_DEF "GenMsgStartDelayTime" 0`
