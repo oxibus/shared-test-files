@@ -88,7 +88,7 @@ In these sections are standard attributes used by [CANpy](https://github.com/ste
 ## Message Attributes
 
 ### GenMsgSendType
-Defines the send type of message.
+Defines the send type of a message.
 Supported types:
 * cyclic
 * triggered
